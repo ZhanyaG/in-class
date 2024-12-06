@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+     <script src="libraries/p5.play.js"></script> 
 </head>
-<body>
+<body>  
     <body style="background-image: url('imgs/love.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
     <a href="index.html"><- home</a>
-    <h1>This is my latest game</h1>
-    <iframe src="https://editor.p5js.org/ZhaniyaK/full/1H631PYsO" width="650"; height="650"></iframe>
+    <h1 style="text-align: center;">
+        This is my latest game</h1>
 
-    <p>
+    <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+        <div id="sketch-container-0"></div>
+      </div>  
+
+      <p style="text-align: center;">
 Description of the project: I had to make an authobiographical game, so I decided to make a game based on my new hobby - cooking in my kitchen.    
 </p>
-
-
         <br>
+    <script src="sketch.js"></script>
+    <script src="p5input.js"></script>
+    <script src="Scene1_Kitchen.js"></script>
+    <script src="Scene2_Menu.js"></script> 
+    <script src="Scene3_Board.js"></script>
+    <script src="Scene4_Tomatoe.js"></script> 
+    <script src="Scene5_Salad.js"></script>
+    <script src="Scene6_Pizza.js"></script>
+    <script src="Scene7_Oven.js"></script>
+    <script src="Scene8_Coffee.js"></script>
+    <script src="Scene9_End.js"></script>
 </body>
 </html>
