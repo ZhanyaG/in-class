@@ -4,7 +4,7 @@ let radiusY = 220 / 2;  // Vertical radius (half the height of the ellipse)
 let centerX, centerY;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(400, 400).parent("sketch-container-6");
   angleMode(DEGREES); 
   noStroke();
   blendMode(BLEND)
