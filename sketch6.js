@@ -8,7 +8,7 @@ let myArrayHeights = [23,30,37,35,25,20];
 
 
 function setup() {
-  createCanvas(600, 600).parent("sketch-container-1");
+  createCanvas(600, 600).parent("sketch-container-6");
   // background (152,195,241);
   angleMode(DEGREES);
   noStroke();
