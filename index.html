@@ -17,26 +17,45 @@
     <title>My Website</title>
     <!-- <link rel="stylesheet" href="./style.css"> -->
     <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Copperplate&display=swap');
+  
+      .copperplate {
+        font-family: 'Copperplate', serif;
+        text-align: center;
+      }
+    </style>
   </head>
   <body style="background-image: url('imgs/abstract.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
     <main>
-      <h1 style="text-align: center;">Welcome to My Website</h1>
+      <h1 class="copperplate">Welcome to My Website</h1>
 
-      <h2 style="text-align: center;">Zhaniya Kenes</h2>
+      <h2 class="copperplate">Zhaniya Kenes</h2>
 
         <p style="text-align: center;"> Explore my journey in coding, design, and technology. Check out my projects and reflections!</p>
 
-        <h2 style="text-align: center;"> ✎ ☃ ✌ ✉ </h2>
+        <!-- <h2 style="text-align: center;"> ✎ ☃ ✌ ✉ </h2> -->
 
-        <ol><a href="about.html"> ✎ About me</a></ol>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 30px;">
+          <ol style="list-style: none; margin: 0; padding: 0;">
+            <li style="display: inline-block;">
+              <a href="about.html" style="text-decoration: none;">✎</a>
+            </li>
+          </ol>
+          <ol style="list-style: none; margin: 0; padding: 0;">
+            <li style="display: inline-block;">
+              <a href="game.html" style="text-decoration: none;">✌</a>
+            </li>
+          </ol>
+          <li style="display: inline-block; list-style: none;">
+            <a href="resume.html" style="text-decoration: none;">✉</a>
+          </li>
+        </div>
+        
 
-       <ol>
-          ☃ My new game can be found at 
-           <a href="game.html">My game</a>
-       </ol>
-
-        <ol>
-          ✌ My other projects from P5.JS are here:
+        <ol> <h3>
+          ✌ My other projects from P5.JS can be found in this list: </h3></ol>
             <li><a href="project1.html">Project 1</a></li>
             <li><a href="project2.html">Project 2</a></li>
             <li><a href="project3.html">Project 3</a></li>
@@ -45,17 +64,12 @@
             <li><a href="project6.html">Project 6</a></li>
         </ol>
 
-        <ol>
-          ✉ My CV / Resume:
-            <li><a href="resume.html">CV</a></li>
-        
-        </ol>
-
         <ol> <h4>My favorite season is:</h4></ol>
         <div class='parent'>
           <img src="imgs/tree.png" alt="favourite season, New Year" width="600"; height="450"; style="display: inline-block"></img>
-          <div id="sketch-container-0" style="display: inline-block; width: 600px; height: 450px;"></div>        </div>
-
+          <div style="display: flex; justify-content: inline-block; align-items: inline-block;; height: 80vh;">
+            <div id="sketch-container-0"></div>
+          </div> 
     </main>
     <!-- <script src="index.js"></script> -->
   </body>
