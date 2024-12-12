@@ -31,7 +31,7 @@
     <main>
       <h1 class="copperplate">Welcome to My Website</h1>
 
-      <h2 class="copperplate">Zhaniya Kenes</h2>
+      <h2 class="copperplate" style="font-size: 50px;">Zhaniya Kenes</h2>
 
         <p style="text-align: center;"> Explore my journey in coding, design, and technology. Check out my projects and reflections!</p>
 
@@ -62,21 +62,22 @@
         </style>
         
         <ol style="list-style: none; margin: 0; padding: 0; text-align: center;">
-          <h3 style="color: purple; font-size: 44px;">
+          <h3 style="color: purple; font-size: 24px;">
             <span class="hover-effect">☃ My other projects from P5.JS can be found in this list:</span>
           </h3>
         </ol>
         
         <ul style="list-style: none; padding: 0; text-align: center;">
-          <li><a href="project1.html" style="color: purple; text-decoration: underline;">Project 1</a></li>
-          <li><a href="project2.html" style="color: purple; text-decoration: underline;">Project 2</a></li>
-          <li><a href="project3.html" style="color: purple; text-decoration: underline;">Project 3</a></li>
-          <li><a href="project4.html" style="color: purple; text-decoration: underline;">Project 4</a></li>
-          <li><a href="project5.html" style="color: purple; text-decoration: underline;">Project 5</a></li>
-          <li><a href="project6.html" style="color: purple; text-decoration: underline;">Project 6</a></li>
+          <li><a href="project1.html" class="project-link">Project 1</a></li>
+          <li><a href="project2.html" class="project-link">Project 2</a></li>
+          <li><a href="project3.html" class="project-link">Project 3</a></li>
+          <li><a href="project4.html" class="project-link">Project 4</a></li>
+          <li><a href="project5.html" class="project-link">Project 5</a></li>
+          <li><a href="project6.html" class="project-link">Project 6</a></li>
         </ul>
         
         <style>
+          /* Hover for header text */
           .hover-effect {
             transition: color 0.3s ease;
           }
@@ -84,7 +85,20 @@
           .hover-effect:hover {
             color: yellow;
           }
-        </style>
+        
+          /* Default link styling */
+          .project-link {
+            color: purple;
+            text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+          }
+        
+          /* Hover for links */
+          .project-link:hover {
+            color: yellow;
+            text-decoration: underline;
+          }
+        </style>        
 
         <ol> <h4>My favorite season is:</h4></ol>
         <div class='parent'>
