@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(400, 400).parent("sketch-container-1");;
+  createCanvas(400, 400).parent("sketch-container-1");
   textAlign(CENTER);
   textSize(10);
   fill(250);
