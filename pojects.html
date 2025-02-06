@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5js Gallery</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+</head>
+  <body style="background-image: url('imgs/abstract.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+
+    <main>
+      <a href="index.html" style="display: block; margin: 20px;">← Home</a>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .project {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .description {
+            margin-top: 10px;
+        }
+
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        <!-- Sketch 1 -->
+        <div class="project">
+            <div id="sketch-container-1"></div>
+            <div class="description">
+                <h2>Sketch 1: The Golden Ring</h2>
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
+                        Description of the project: I had to re-create the object based on desciption of my partner.    
+                    </p>
+            
+                    <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
+                        Description of the object: 'A size 8 ring encased in fake gold and shiny enough to be seen from 50 feet away, It was Gold and had eldritch writing from the Lord of rings movies, it was a gift from my oldest brother when i was around 16. The ring that rules over them all, the writing was in a darker toned yellow but still very small and hidden.'
+                    </p>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Sketch 2 -->
+        <div class="project">
+            <div id="sketch-container-2"></div>
+            <div class="description">
+                <h2>Sketch 2: Face Generator</h2>
+                <p>Description of the project: I had to create a sketch where you mouse press on Canvas, and the faces pop up randomly on the screen with different sizes and colors.    
+                </p>
+            </div>
+        </div>
+
+        <!-- Sketch 3 -->
+        <div class="project">
+            <div id="sketch-container-3"></div>
+            <div class="description">
+                <h2>Sketch 3: Timer</h2>
+                <p style="text-align: center;">
+                    Description of the project: I had to create a sketch with an embedded timer, so I illustrate city growth with a timer and 3 different seasons change.    
+                    </p>           
+                 </div>
+        </div>
+
+         <!-- Sketch 4 -->
+         <div class="project">
+            <div id="sketch-container-4"></div>
+            <div class="description">
+                <h2>Sketch 4: Exquisite corpse</h2>
+                <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
+                    Description of the project: I had to team up with two other groupmates and we had to illustrate our favorite objects, after which divide them into 3, and mix them with each other, making a total new creation.    
+                </p>
+            </div>
+        </div>
+
+        <!-- Sketch 5 -->
+        <div class="project">
+            <div id="sketch-container-5"></div>
+            <div class="description">
+                <h2>Infinite looping candy</h2>
+                <p style="text-align: center;">
+                    Description of the project: I had to make an illusional art, so I made an infinite looping candy from my childhood.    
+                    </p>
+            </div>
+        </div>
+
+         <!-- Sketch 6 -->
+         <div class="project">
+            <div id="sketch-container-6"></div>
+            <div class="description">
+                <h2>Data Portrait</h2>
+                    <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
+                        Description of the project: I had to make my own "Data Portrait", collecting data from my one week, so I decided to count how many times in a week I open Canvas Page for my school, which also can show my level of anxiety and fear of missing any deadlines.   
+                    </p>
+            </div>
+        </div>
+
+    </div>
+
+
+        <br>
+        <script src="sketch1.js"></script>
+        <br>
+        <script src="sketch2.js"></script>
+        <br>
+        <script src="sketch3.js"></script>
+        <br>
+        <script src="sketch4.js"></script>
+        <br>
+        <script src="sketch5.js"></script>
+        <br>
+        <script src="sketch6.js"></script>
+
+</body>
+</html>
