@@ -3,7 +3,7 @@
 //move the mouseY up and down to see the changes of the seasons
 
 let timer = 0;
-let size = 150;
+let size_ = 150;
 
 function setup() {
   createCanvas(600, 600).parent("sketch-container-3");
@@ -53,14 +53,14 @@ function draw() {
   // if two seconds have passed
   if (timer>3000) {
     
-    // increase size
-    size+=30
+    // increase size_
+    size_+=30
     
-    // if size is too big...
-    if (size>250)
+    // if size_ is too big...
+    if (size_>250)
     {
-      // reset size to 150
-      size=150
+      // reset size_ to 150
+      size_=150
     }
     // reset timer
     timer = 0;
@@ -69,33 +69,33 @@ function draw() {
 
   //ground
   fill(22,56,22);
-    ellipse(300, size+200, size+300, size+30);
+    ellipse(300, size_+200, size_+300, size_+30);
   
   //gray square
    fill(67,98,112);
-  rect(340, 320, size-170, -130);
+  rect(340, 320, size_-170, -130);
   
   //square purple
   fill(111,111,182);
-  rect(190, 370, size-160,-124);
+  rect(190, 370, size_-160,-124);
  
    //redish square
    fill(170,120,120);
-  rect(430, 360, size-155,-120);
+  rect(430, 360, size_-155,-120);
   
   //square white blue
    fill(102,159,185);
-  rect(390, 390, size-145,-120);
+  rect(390, 390, size_-145,-120);
   
   //square blue
  fill(0,0,255);
-  rect(230, 410, size-100,-150);
+  rect(230, 410, size_-100,-150);
   
   //square lilac
   fill(172,172,245);
-  rect(290, 430, size-135,-140);
+  rect(290, 430, size_-135,-140);
   
   //sun
   fill(255,255,1);
-    circle(500, 90, size-90);
+    circle(500, 90, size_-90);
 }
