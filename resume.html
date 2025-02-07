@@ -4,12 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-image: url('imgs/back.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Copperplate', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: black;
+            font-family: 'Copperplate', serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: white;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            width: 80%;
+        }
+    </style>
 </head>
 <body>
-    <body style="background-image: url('imgs/love.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-        <a href="index.html" style="display: block; margin: 20px;">← Home</a>
-    <h1 style="text-align: center;">This is my CV <3 </h1>
-        <img src="imgs/cv.png" alt="Centered Photo" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></img>
+
+    <a href="index.html" class="home-button">← Home</a>   
+    <h1 style="text-align: center;">This is my CV <3> </h1>
+        <img src="imgs/cv.png" alt="Centered Photo" style="display: block; margin-left: auto; margin-right: auto; width: 60%;"></img>
 
         <br>
 </body>

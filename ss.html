@@ -4,22 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-image: url('imgs/back.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Copperplate', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: black;
+            font-family: 'Copperplate', serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: white;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            width: 40%;
+        }
+
+        .description-box {
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .description-box p {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <body style="background-image: url('imgs/love.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-        <a href="index.html" style="display: block; margin: 20px;">← Home</a>
-    <h1 style="text-align: center;">This is my Space/Materiality course's project "The Yurt" </h1>
-        <img src="imgs/yurt.jpg" alt="Centered Photo" style="display: block; margin-left: auto; margin-right: auto; width: 40%;"></img>
-        
-        <div style="text-align: center; margin-top: 20px;">
-        <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
-            My design is connected to patterns on a chipboard, by graving the ornaments of Kazakh culture. I was really interested in doing an art that connects Kazakh traditional dishes or accessories, like yuvelir. It’s also really popular among the culture to wear wood accessories. As the main focus of the project is to embrace cultural identity, I want to promote and popularize my community to a bigger scale, as Central Asia is a still secret gem for everyone who is abroad. My work was also published in Parsons Notes: 
+
+    <a href="index.html" class="home-button">← Home</a> 
+
+    <h1>This is my Space/Materiality course's project "The Yurt"</h1>
+
+    <img src="imgs/yurt.jpg" alt="Centered Photo" style="display: block; margin-left: auto; margin-right: auto; width: 35%;"></img>
+
+    <!-- Description Box -->
+    <div class="description-box">
+        <p><strong>My design:</strong> is connected to patterns on a chipboard, by engraving the ornaments of Kazakh culture. I was really interested in creating art that connects Kazakh traditional dishes or accessories, like yuvelir. It’s also really popular in the culture to wear wood accessories.</p>
+
+        <p>The main focus of the project is to embrace cultural identity. I want to promote and popularize my community on a larger scale, as Central Asia remains a hidden gem for many abroad.</p>
+
+        <p>My work was also published in Parsons Notes: 
             <a href="https://parsons.edu/undergrad/student-work/zhaniya-kenes-2/" target="_blank" style="color: blue; text-decoration: underline;">
-              https://parsons.edu/undergrad/student-work/zhaniya-kenes-2/
+                https://parsons.edu/undergrad/student-work/zhaniya-kenes-2/
             </a>.
-          </p>
-          </div>
-          
-        <br>
+        </p>
+    </div>
+
 </body>
 </html>

@@ -4,13 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <style>
+        body {
+            background-image: url('imgs/abstract.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Copperplate', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: black;
+            font-family: 'Copperplate', serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: white;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            width: 80%;
+        }
+    </style>
 </head>
 <body>
-    <body style="background-image: url('imgs/abstract.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-    <a href="index.html"><- home</a>
-    <h1 style="text-align: center;">
+
+    <a href="projects.html" class="home-button">← Gallery</a> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+
+            <h1 style="text-align: center;">
         This is my 4th Project</h1>
 
     <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">

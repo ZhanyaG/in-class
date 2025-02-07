@@ -1,43 +1,89 @@
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
-  </head>
-  <body style="background-image: url('imgs/abstract.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    <style>
+        body {
+            background-image: url('imgs/back.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Copperplate', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
 
-    <main>
-      <a href="index.html" style="display: block; margin: 20px;">← Home</a>
-      <h1 style="text-align: center;">Let's get to know each other!</h1>
-      <h2 style="text-align: center;">That's me :)</h2>
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: black;
+            font-family: 'Copperplate', serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
 
-      <!-- Centered Photo -->
-      <img src="imgs/myphoto.png" alt="Centered Photo" style="display: block; margin: 0 auto; width: 30%;">
+        .home-button:hover {
+            background-color: white;
+        }
 
-      <!-- Text Content -->
-      <div style="text-align: center; margin-top: 20px;">
-        <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
-          About me: I am an undergraduate student at Parsons School of Design in NYC, majoring in Design and Technology and minoring in Fashion Business and Immersive Storytelling.
-        </p>
-      
-        <p style="margin: 10px auto; width: 100%; max-width: 750px; line-height: 1.6;">
-          My interests: I love reading classic books, dancing contemporary, going to pilates, and hanging around Manhattan.
-        </p>
-      
-        <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
-          Career goals: I am interested in integrating future technologies into art and daily life.
-        </p>
-      
-        <p style="margin: 10px auto; width: 80%; max-width: 750px; line-height: 1.6;">
-          Reflections: My journey with technology began in high school when I studied IT in Global Society. Initially intimidated by coding, I have now embraced it in my 20s and enjoy building my skills.
-        </p>
-      
-        <p style="margin: 10px auto; width: 80%; max-width: 700px; line-height: 1.6;">
-          Favorite coffee shops in NYC: Conwell Coffee Hall, Stumptown Coffee Roasters, Ademi Coffee and Tea, PlantShed at Kith Women, and Le Pain Quotidien.
-        </p>
-      </div>
-    </main>
+        h1 {
+            font-size: 24px;
+        }
 
-  </body>
+        img {
+            display: block;
+            margin: auto;
+            width: 30%;
+        }
+
+        .about-box {
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .about-box p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="home-button">← Home</a> 
+
+    <h1>Let's get to know each other!</h1>
+    <h2>About me :)</h2>
+
+    <!-- Centered Photo -->
+    <img src="imgs/myphoto.png" alt="Centered Photo">
+
+    <!-- About Me Section -->
+    <div class="about-box">
+        <p><strong>About me:</strong> I am an undergraduate student at Parsons School of Design in NYC, majoring in Design and Technology and minoring in Fashion Business and Immersive Storytelling.</p>
+
+        <p><strong>My interests:</strong> I love reading classic books, dancing contemporary, going to pilates, and hanging around Manhattan.</p>
+
+        <p><strong>Career goals:</strong> I am interested in integrating future technologies into art and daily life.</p>
+
+        <p><strong>Reflections:</strong> My journey with technology began in high school when I studied IT in Global Society. Initially intimidated by coding, I have now embraced it in my 20s and enjoy building my skills.</p>
+
+        <p><strong>Favorite coffee shops in NYC:</strong> Conwell Coffee Hall, Stumptown Coffee Roasters, Ademi Coffee and Tea, PlantShed at Kith Women, and Le Pain Quotidien.</p>
+    </div>
+
+</body>
 </html>

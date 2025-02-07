@@ -4,24 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-image: url('imgs/back.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Copperplate', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: black;
+            font-family: 'Copperplate', serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: white;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65vh;
+        }
+
+        .description-box {
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .description-box p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="home-button">← Home</a> 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-     <script src="libraries/p5.play.js"></script> 
-</head>
-<body>  
-    <body style="background-image: url('imgs/love.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-        <a href="index.html" style="display: block; margin: 20px;">← Home</a>
-    <h1 style="text-align: center;">
-        This is my latest game</h1>
+    <script src="libraries/p5.play.js"></script> 
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 65vh;">
+    <h1>This is my latest game</h1>
+
+    <div class="game-container">
         <div id="sketch-container-0"></div>
-      </div>  
+    </div>  
 
-      <p style="text-align: center;">
-Description of the project: I had to make an authobiographical game, so I decided to make a game based on my new hobby - cooking in my kitchen.    
-</p>
-        <br>
+    <!-- Description Box -->
+    <div class="description-box">
+        <p><strong>Description of the project:</strong> I had to make an autobiographical game, so I decided to make a game based on my new hobby—cooking in my kitchen.</p>
+    </div>
+
     <script src="sketch.js"></script>
     <script src="p5input.js"></script>
     <script src="Scene1_Kitchen.js"></script>
@@ -33,5 +93,6 @@ Description of the project: I had to make an authobiographical game, so I decide
     <script src="Scene7_Oven.js"></script>
     <script src="Scene8_Coffee.js"></script>
     <script src="Scene9_End.js"></script>
+
 </body>
 </html>
