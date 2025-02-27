@@ -14,7 +14,7 @@ function preload() {
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight).parent("sketch-container-12");
+  createCanvas(600,600).parent("sketch-container-12");
   
   radius = min(width,height) / 3;
   
