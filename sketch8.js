@@ -6,7 +6,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(600, 600).parent("sketch-container-8");
   
   pts = caslon.textToPoints('Love', 130, 230, 220,{
     sampleFactor: 0.45,

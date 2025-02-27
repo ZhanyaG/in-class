@@ -9,7 +9,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(600, 600).parent("sketch-container-9");
   points = font.textToPoints("Life", 50, 400, 300, {
     sampleFactor: 0.9,
     simplifyThreshold: 0

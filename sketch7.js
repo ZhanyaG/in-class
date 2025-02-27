@@ -4,7 +4,7 @@ var font;
 
 
 function setup() {
-  createCanvas(600,600);
+  createCanvas(600, 600).parent("sketch-container-7");
   noLoop();
 
   opentype.load('Travellia.otf', function(err, f) {
