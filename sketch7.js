@@ -2,19 +2,25 @@ var textTyped = 'Anxiety';
 
 var font;
 
+var opentype;
+
+function preload() {
+  opentype = loadFont('Travellia.otf');
+}
 
 function setup() {
   createCanvas(600, 600).parent("sketch-container-7");
   noLoop();
+textFont(opentype);
 
-  opentype.load('Travellia.otf', function(err, f) {
-    if (err) {
-      console.log(err);
-    } else {
-      font = f;
-      loop();
-    }
-  });
+//   opentype.load('Travellia.otf', function(err, f) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       font = f;
+//       loop();
+//     }
+//   });
 }
 
 function draw() {

@@ -9,6 +9,8 @@ var textW = 0;
 var letterX = 10 + spacing;
 var letterY = lineSpacing;
 
+var opentype;
+
 var stepSize = 2;
 var danceFactor = 1;
 
