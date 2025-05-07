@@ -87,8 +87,10 @@
     </div>
 
     <script>
-        const FOURSQUARE_API_KEY = 'fsq3wlxveL7ptGPS4R+M6Z9xaVO8REFrHZxr4iUFVClXe98=';
-        const apiUrl = 'https://api.foursquare.com/v3/places/search';
+        // Your Mapbox API key
+        const MAPBOX_API_KEY = 'pk.eyJ1IjoiamFuZXoyMyIsImEiOiJjbWFlYnBuYzIwNW05MmpwemQ1dHB4dXpsIn0.B4FGgrmQbqyG_mSd5lxxcQ'; 
+        const FOURSQUARE_API_KEY = 'fsq3wlxveL7ptGPS4R+M6Z9xaVO8REFrHZxr4iUFVClXe98='; 
+        const apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
 
         // Handle button click to trigger divination
         document.getElementById('searchBtn').addEventListener('click', function() {
@@ -102,10 +104,34 @@
             }
         });
 
-        // Fetch location data using Foursquare API
+        // Fetch location data using Mapbox API
         async function fetchLocationData(location, mood) {
-            const url = `${apiUrl}?query=${encodeURIComponent(mood)}&near=${encodeURIComponent(location)}&limit=5&client_id=${FOURSQUARE_API_KEY}`;
-            
+            const url = `${apiUrl}${encodeURIComponent(location)}.json?access_token=${MAPBOX_API_KEY}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log("Mapbox Data:", data); // Debugging line to check API response
+
+                if (data.features && data.features.length > 0) {
+                    const lat = data.features[0].center[1];
+                    const lon = data.features[0].center[0];
+
+                    // Fetch restaurants based on the location and mood from Foursquare API
+                    fetchFoursquareData(lat, lon, mood);
+                } else {
+                    document.getElementById('result').innerHTML = 'No results found for your location.';
+                }
+            } catch (error) {
+                console.error('Error fetching location data:', error);
+                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching data.';
+            }
+        }
+
+        // Fetch restaurant data based on location and mood from Foursquare API
+        async function fetchFoursquareData(lat, lon, mood) {
+            const url = `https://api.foursquare.com/v3/places/search?query=${encodeURIComponent(mood)}&near=${encodeURIComponent(lat + "," + lon)}&limit=5`;
+
             try {
                 const response = await fetch(url, {
                     headers: {
@@ -121,8 +147,8 @@
                     document.getElementById('result').innerHTML = 'No matching restaurants found for your mood.';
                 }
             } catch (error) {
-                console.error('Error fetching location data:', error);
-                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching data.';
+                console.error('Error fetching Foursquare data:', error);
+                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching restaurant data.';
             }
         }
 
