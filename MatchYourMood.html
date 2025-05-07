@@ -87,10 +87,7 @@
     </div>
 
     <script>
-        // Your Mapbox API key
-        const MAPBOX_API_KEY = 'pk.eyJ1IjoiamFuZXoyMyIsImEiOiJjbWFlYnBuYzIwNW05MmpwemQ1dHB4dXpsIn0.B4FGgrmQbqyG_mSd5lxxcQ'; 
-        const FOURSQUARE_API_KEY = 'fsq3HudPx2GB4zGJSU1LT1Ej5u9TQxDG4H35nGzmpk622OE'; 
-        const apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
+        const GOOGLE_PLACES_API_KEY = 'AIzaSyAd8aa24NJGZ3u7jeyH9kkXhT7kshqbNzQ'; // Replace with your Places API key
 
         // Handle button click to trigger divination
         document.getElementById('searchBtn').addEventListener('click', function() {
@@ -98,48 +95,20 @@
             const mood = document.getElementById('mood').value;
             
             if (location && mood) {
-                fetchLocationData(location, mood);
+                fetchGooglePlacesData(location, mood);
             } else {
                 alert('Please enter both a location and mood!');
             }
         });
 
-        // Fetch location data using Mapbox API
-        async function fetchLocationData(location, mood) {
-            const url = `${apiUrl}${encodeURIComponent(location)}.json?access_token=${MAPBOX_API_KEY}`;
+        // Fetch restaurant data using Google Places API (text search)
+        async function fetchGooglePlacesData(location, mood) {
+            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${encodeURIComponent(location)}+${encodeURIComponent(mood)}&key=${GOOGLE_PLACES_API_KEY}`;
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log("Mapbox Data:", data); // Debugging line to check API response
-
-                if (data.features && data.features.length > 0) {
-                    const lat = data.features[0].center[1];
-                    const lon = data.features[0].center[0];
-
-                    // Fetch restaurants based on the location and mood from Foursquare API
-                    fetchFoursquareData(lat, lon, mood);
-                } else {
-                    document.getElementById('result').innerHTML = 'No results found for your location.';
-                }
-            } catch (error) {
-                console.error('Error fetching location data:', error);
-                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching data.';
-            }
-        }
-
-        // Fetch restaurant data based on location and mood from Foursquare API
-        async function fetchFoursquareData(lat, lon, mood) {
-            const url = `https://api.foursquare.com/v3/places/search?query=${encodeURIComponent(mood)}&near=${encodeURIComponent(lat + "," + lon)}&limit=5`;
-
-            try {
-                const response = await fetch(url, {
-                    headers: {
-                        'Authorization': `Bearer ${FOURSQUARE_API_KEY}`,
-                    },
-                });
-                const data = await response.json();
-                console.log("Foursquare Data:", data); // Debugging line to check API response
+                console.log("Google Places Data:", data); // Debugging line to check API response
 
                 if (data.results && data.results.length > 0) {
                     displayDivinationResult(data.results);
@@ -147,7 +116,7 @@
                     document.getElementById('result').innerHTML = 'No matching restaurants found for your mood.';
                 }
             } catch (error) {
-                console.error('Error fetching Foursquare data:', error);
+                console.error('Error fetching Google Places data:', error);
                 document.getElementById('result').innerHTML = 'Sorry, there was an error fetching restaurant data.';
             }
         }
@@ -159,9 +128,9 @@
 
             restaurants.forEach(restaurant => {
                 resultContainer.innerHTML += `
-                    <p><strong>${restaurant.name}</strong> - ${restaurant.location.address}</p>
-                    <p>Rating: ${restaurant.rating} | Price: ${restaurant.price}</p>
-                    <p><img src="${restaurant.photo}" alt="${restaurant.name}" style="width: 200px;"/></p>
+                    <p><strong>${restaurant.name}</strong> - ${restaurant.vicinity}</p>
+                    <p>Rating: ${restaurant.rating ? restaurant.rating : 'N/A'}</p>
+                    <p><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photos ? restaurant.photos[0].photo_reference : ''}&key=${GOOGLE_PLACES_API_KEY}" alt="${restaurant.name}" style="width: 200px;"/></p>
                 `;
             });
         }
