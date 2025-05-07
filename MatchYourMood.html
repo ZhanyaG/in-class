@@ -87,7 +87,7 @@
     </div>
 
     <script>
-        const GOOGLE_PLACES_API_KEY = 'AIzaSyAd8aa24NJGZ3u7jeyH9kkXhT7kshqbNzQ'; // Replace with your Places API key
+        const OPENCAGE_API_KEY = 'b692117ffb5d4bddbcfa68f02d089cf2'; // Replace with your OpenCage API key
 
         // Handle button click to trigger divination
         document.getElementById('searchBtn').addEventListener('click', function() {
@@ -95,20 +95,44 @@
             const mood = document.getElementById('mood').value;
             
             if (location && mood) {
-                fetchGooglePlacesData(location, mood);
+                fetchLocationData(location, mood);
             } else {
                 alert('Please enter both a location and mood!');
             }
         });
 
-        // Fetch restaurant data using Google Places API (text search)
-        async function fetchGooglePlacesData(location, mood) {
-            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${encodeURIComponent(location)}+${encodeURIComponent(mood)}&key=${GOOGLE_PLACES_API_KEY}`;
+        // Fetch location data using OpenCage Geocoding API
+        async function fetchLocationData(location, mood) {
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${OPENCAGE_API_KEY}`;
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log("Google Places Data:", data); // Debugging line to check API response
+                console.log("OpenCage Data:", data); // Debugging line to check API response
+
+                if (data.results && data.results.length > 0) {
+                    const lat = data.results[0].geometry.lat;
+                    const lon = data.results[0].geometry.lng;
+
+                    // Fetch restaurants based on the location and mood from OpenCage Places API
+                    fetchOpenCagePlacesData(lat, lon, mood);
+                } else {
+                    document.getElementById('result').innerHTML = 'No results found for your location.';
+                }
+            } catch (error) {
+                console.error('Error fetching location data:', error);
+                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching data.';
+            }
+        }
+
+        // Fetch restaurant data based on location and mood from OpenCage Places API (place search)
+        async function fetchOpenCagePlacesData(lat, lon, mood) {
+            const url = `https://api.opencagedata.com/places/v1/search?q=${encodeURIComponent(mood)}&lat=${lat}&lon=${lon}&key=${OPENCAGE_API_KEY}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log("OpenCage Places Data:", data); // Debugging line to check API response
 
                 if (data.results && data.results.length > 0) {
                     displayDivinationResult(data.results);
@@ -116,21 +140,21 @@
                     document.getElementById('result').innerHTML = 'No matching restaurants found for your mood.';
                 }
             } catch (error) {
-                console.error('Error fetching Google Places data:', error);
+                console.error('Error fetching OpenCage Places data:', error);
                 document.getElementById('result').innerHTML = 'Sorry, there was an error fetching restaurant data.';
             }
         }
 
         // Display the divination result
-        function displayDivinationResult(restaurants) {
+        function displayDivinationResult(places) {
             const resultContainer = document.getElementById('result');
             resultContainer.innerHTML = `<p>Your divination result:</p><ul></ul>`;
 
-            restaurants.forEach(restaurant => {
+            places.forEach(place => {
                 resultContainer.innerHTML += `
-                    <p><strong>${restaurant.name}</strong> - ${restaurant.vicinity}</p>
-                    <p>Rating: ${restaurant.rating ? restaurant.rating : 'N/A'}</p>
-                    <p><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photos ? restaurant.photos[0].photo_reference : ''}&key=${GOOGLE_PLACES_API_KEY}" alt="${restaurant.name}" style="width: 200px;"/></p>
+                    <p><strong>${place.name}</strong> - ${place.formatted_address}</p>
+                    <p>Rating: ${place.rating ? place.rating : 'N/A'}</p>
+                    <p><img src="${place.photos ? place.photos[0].photo_reference : ''}" alt="${place.name}" style="width: 200px;"/></p>
                 `;
             });
         }
