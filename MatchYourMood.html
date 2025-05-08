@@ -102,7 +102,7 @@
             width: 100%;
             border-radius: 8px;
             cursor: pointer;
-            object-fit: cover; /* Ensures image maintains aspect ratio */
+            object-fit: cover;
         }
 
         .meal p {
@@ -201,6 +201,9 @@
             const mood = document.getElementById('moodInput').value.trim().toLowerCase();
             const resultContainer = document.getElementById('result');
             resultContainer.innerHTML = ''; 
+            const mealDetailsContainer = document.getElementById('mealDetails');
+            mealDetailsContainer.innerHTML = ''; // Clear meal details when new mood is typed
+            mealDetailsContainer.style.display = 'none'; // Hide meal details
 
             let ingredients = moodToIngredients[mood];
             if (!ingredients) {
