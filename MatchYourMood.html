@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match Your Mood: Find Restaurants by Mood</title>
+    <title>Mood-based Recipe Suggestions</title>
     <style>
-        /* CSS styles for the page */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #f5f5f5, #e2d8c3); /* Gradient background */
             color: #333;
             margin: 0;
             padding: 0;
         }
+
         header {
             background-color: #d8c6b6;
             padding: 40px 0;
@@ -21,19 +21,24 @@
             font-size: 36px;
             letter-spacing: 1px;
         }
+
         #container {
             max-width: 1200px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 30px;
             background-color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
+
         h1 {
             font-size: 32px;
             color: #333;
             text-align: center;
         }
+
         input[type="text"] {
             width: 60%;
             padding: 12px;
@@ -42,7 +47,13 @@
             border: 1px solid #ddd;
             font-size: 16px;
             outline: none;
+            transition: border-color 0.3s ease;
         }
+
+        input[type="text"]:focus {
+            border-color: #d8c6b6; /* Focus effect */
+        }
+
         button {
             padding: 12px 25px;
             font-size: 16px;
@@ -53,110 +64,216 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: #b9a38e;
         }
+
         #result {
             margin-top: 40px;
-            text-align: center;
-            font-size: 18px;
-            padding: 20px;
-            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+
+        .meal {
+            width: 30%;
+            min-width: 250px;
+            padding: 15px;
+            box-sizing: border-box;
             background-color: #faf9f6;
             border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        #result img {
-            width: 80%;
-            margin-top: 20px;
+
+        .meal:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .meal img {
+            width: 100%;
             border-radius: 8px;
+            cursor: pointer;
+            object-fit: cover; /* Ensures image maintains aspect ratio */
+        }
+
+        .meal p {
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #mealDetails {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            text-align: center;
+            display: none; /* Hidden initially */
+            transition: opacity 0.3s ease;
+        }
+
+        #mealDetails h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        #mealDetails img {
+            width: 50%;
+            margin: 20px 0;
+            object-fit: cover;
+        }
+
+        #mealDetails ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #mealDetails ul li {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        #mealDetails p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            #result {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .meal {
+                width: 80%;
+                min-width: unset;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        Match Your Mood: Find Your Restaurant Based on Mood
+       Mood&Food
     </header>
-    
+
     <div id="container">
-        <h1>Enter your location and mood for a divination experience:</h1>
-        <input type="text" id="location" placeholder="Enter city or address">
-        <input type="text" id="mood" placeholder="Enter mood (e.g. fancy, casual, romantic)">
-        <button id="searchBtn">Divine My Dining Experience</button>
-        
+        <h1>Enter your mood for a matching meal suggestion:</h1>
+        <input type="text" id="moodInput" placeholder="Type your mood (e.g., 'adventurous', 'fun')">
+        <button onclick="suggestMeals()">Get Meal Suggestions</button>
+
         <div id="result"></div>
+        <div id="mealDetails"></div> <!-- Meal details section, hidden initially -->
     </div>
 
     <script>
-        const OPENCAGE_API_KEY = 'b692117ffb5d4bddbcfa68f02d089cf2'; // Replace with your OpenCage API key
+        const moodToIngredients = {
+            "strong": ["Beef", "Lamb", "Pork"], 
+            "romantic": ["Strawberry", "Chocolate"],  
+            "adventurous": ["Chili", "Curry", "Fish", "Shrimp"],  
+            "comfort": ["Potato", "Cheese", "Bread"],  
+            "fresh": ["Lettuce", "Tomato", "Avocado"],  
+            "angry": ["Jalapeno", "Cayenne", "Chili"],  
+            "sweet": ["Sugar", "Honey", "Vanilla"],  
+            "nostalgic": ["Saltfish", "Ackee", "Fish Pie"],  
+            "fun": ["Candy", "Lemon", "Mint"],  
+            "calm": ["Oats", "Rice", "Herbs"],  
+            "healthy": ["Spinach", "Kale", "Broccoli"]
+        };
 
-        // Handle button click to trigger divination
-        document.getElementById('searchBtn').addEventListener('click', function() {
-            const location = document.getElementById('location').value;
-            const mood = document.getElementById('mood').value;
-            
-            if (location && mood) {
-                fetchLocationData(location, mood);
-            } else {
-                alert('Please enter both a location and mood!');
-            }
-        });
-
-        // Fetch location data using OpenCage Geocoding API
-        async function fetchLocationData(location, mood) {
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${OPENCAGE_API_KEY}`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                console.log("OpenCage Data:", data); // Debugging line to check API response
-
-                if (data.results && data.results.length > 0) {
-                    const lat = data.results[0].geometry.lat;
-                    const lon = data.results[0].geometry.lng;
-
-                    // Fetch restaurants based on the location and mood from OpenCage Places API
-                    fetchOpenCagePlacesData(lat, lon, mood);
-                } else {
-                    document.getElementById('result').innerHTML = 'No results found for your location.';
-                }
-            } catch (error) {
-                console.error('Error fetching location data:', error);
-                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching data.';
-            }
+        async function fetchRandomRecipeWithIngredient(ingredient) {
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+            const data = await response.json();
+            return data.meals; 
         }
 
-        // Fetch restaurant data based on location and mood from OpenCage Places API (place search)
-        async function fetchOpenCagePlacesData(lat, lon, mood) {
-            const url = `https://api.opencagedata.com/places/v1/search?q=${encodeURIComponent(mood)}&lat=${lat}&lon=${lon}&key=${OPENCAGE_API_KEY}`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                console.log("OpenCage Places Data:", data); // Debugging line to check API response
-
-                if (data.results && data.results.length > 0) {
-                    displayDivinationResult(data.results);
-                } else {
-                    document.getElementById('result').innerHTML = 'No matching restaurants found for your mood.';
-                }
-            } catch (error) {
-                console.error('Error fetching OpenCage Places data:', error);
-                document.getElementById('result').innerHTML = 'Sorry, there was an error fetching restaurant data.';
-            }
-        }
-
-        // Display the divination result
-        function displayDivinationResult(places) {
+        async function suggestMeals() {
+            const mood = document.getElementById('moodInput').value.trim().toLowerCase();
             const resultContainer = document.getElementById('result');
-            resultContainer.innerHTML = `<p>Your divination result:</p><ul></ul>`;
+            resultContainer.innerHTML = ''; 
 
-            places.forEach(place => {
-                resultContainer.innerHTML += `
-                    <p><strong>${place.name}</strong> - ${place.formatted_address}</p>
-                    <p>Rating: ${place.rating ? place.rating : 'N/A'}</p>
-                    <p><img src="${place.photos ? place.photos[0].photo_reference : ''}" alt="${place.name}" style="width: 200px;"/></p>
-                `;
-            });
+            let ingredients = moodToIngredients[mood];
+            if (!ingredients) {
+                const randomMood = getRandomMood();
+                ingredients = moodToIngredients[randomMood];
+            }
+
+            const randomIngredient = ingredients[Math.floor(Math.random() * ingredients.length)];
+
+            const meals = await fetchRandomRecipeWithIngredient(randomIngredient);
+
+            if (meals && meals.length > 0) {
+                meals.forEach(meal => {
+                    const mealDiv = document.createElement('div');
+                    mealDiv.classList.add('meal');
+                    mealDiv.innerHTML = `
+                        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" onclick="showMealDetails('${meal.idMeal}')">
+                        <p><strong>${meal.strMeal}</strong></p>
+                    `;
+                    resultContainer.appendChild(mealDiv);
+                });
+            } else {
+                const randomMood = getRandomMood();
+                ingredients = moodToIngredients[randomMood];
+                const fallbackIngredient = ingredients[Math.floor(Math.random() * ingredients.length)];
+
+                const fallbackMeals = await fetchRandomRecipeWithIngredient(fallbackIngredient);
+                fallbackMeals.forEach(meal => {
+                    const mealDiv = document.createElement('div');
+                    mealDiv.classList.add('meal');
+                    mealDiv.innerHTML = `
+                        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" onclick="showMealDetails('${meal.idMeal}')">
+                        <p><strong>${meal.strMeal}</strong></p>
+                    `;
+                    resultContainer.appendChild(mealDiv);
+                });
+            }
+        }
+
+        function getRandomMood() {
+            const moods = Object.keys(moodToIngredients);
+            return moods[Math.floor(Math.random() * moods.length)];
+        }
+
+        async function showMealDetails(mealId) {
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
+            const data = await response.json();
+            const meal = data.meals[0];
+
+            const mealDetails = `
+                <h2>${meal.strMeal}</h2>
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                <p><strong>Ingredients:</strong></p>
+                <ul>
+                    ${getIngredientsList(meal)}
+                </ul>
+                <p><strong>Instructions:</strong></p>
+                <p>${meal.strInstructions}</p>
+            `;
+            const mealDetailsContainer = document.getElementById('mealDetails');
+            mealDetailsContainer.innerHTML = mealDetails;
+            mealDetailsContainer.style.display = 'block'; // Show the meal details section
+            mealDetailsContainer.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to details
+        }
+
+        function getIngredientsList(meal) {
+            let ingredientsList = '';
+            for (let i = 1; i <= 20; i++) {
+                if (meal[`strIngredient${i}`] && meal[`strMeasure${i}`]) {
+                    ingredientsList += `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`;
+                }
+            }
+            return ingredientsList;
         }
     </script>
 </body>
